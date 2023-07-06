@@ -3,6 +3,7 @@ aaa group server tacacs+ {{ group.name }}
  {% for server in aaa["aaa"]["group"]["server"][region]["tacacsplus"][0]["server"]["name"] -%}
  server name {{ server.name }}
  {% endfor -%}
+{% endfor %}
 
 {% for server in config_context["tacacs"]["server"]['APAC'] %}
 tacacs server {{ server.name }}
