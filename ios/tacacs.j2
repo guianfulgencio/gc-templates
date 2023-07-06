@@ -1,10 +1,3 @@
-{% for group in config_context["aaa"]["group"]["server"]["US"]["tacacsplus"] %}
-aaa group server tacacs+ {{ group.name }}
- {% for server in aaa["aaa"]["group"]["server"]["US"]["tacacsplus"][0]["server"]["name"] -%}
- server name {{ server.name }}
- {% endfor -%}
-{% endfor %}
-
 {% for server in config_context["tacacs"]["server"]['APAC'] %}
 tacacs server {{ server.name }}
  address ipv4 {{ server.address.ipv4 }} 
