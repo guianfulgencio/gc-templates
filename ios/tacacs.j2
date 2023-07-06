@@ -1,6 +1,6 @@
 {% for group in config_context["aaa"]["group"]["server"]["US"]["tacacsplus"] %}
 aaa group server tacacs+ {{ group.name }}
- {% for server in aaa["aaa"]["group"]["server"][region]["tacacsplus"][0]["server"]["name"] -%}
+ {% for server in aaa["aaa"]["group"]["server"]["US"]["tacacsplus"][0]["server"]["name"] -%}
  server name {{ server.name }}
  {% endfor -%}
 {% endfor %}
