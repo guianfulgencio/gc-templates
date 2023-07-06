@@ -1,3 +1,10 @@
+{% for server in tacacs["tacacs"]["server"][region] %}
+tacacs server {{ server.name }}
+ address ipv4 {{ server.address.ipv4 }} 
+ key 7 06031D344F4B1A1606041B08
+ timeout 10
+{% endfor %}
+
 {% for server in config_context["tacacs"]["server"]['APAC'] %}
 tacacs server {{ server.name }}
  address ipv4 {{ server.address.ipv4 }} 
