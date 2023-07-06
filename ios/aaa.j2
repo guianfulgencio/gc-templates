@@ -1,3 +1,15 @@
+{% for group in aaa["aaa"]["group"]["server"][region]["tacacsplus"] %}
+aaa group server tacacs+ {{ group.name }}
+ {% for server in aaa["aaa"]["group"]["server"][region]["tacacsplus"][0]["server"]["name"] -%}
+ server name {{ server.name }}
+ {% endfor -%}
+ {%- for intf in device_properties['interface']['GigabitEthernet'] %}
+ {%- if intf.vrf is defined and intf.vrf.forwarding is defined -%}
+ ip vrf forwarding {{ intf.vrf.forwarding }}
+ {% endif -%}
+ {% endfor -%}    
+{% endfor %}
+!
 {% for group in config_context["aaa"]["group"]["server"]["US"]["tacacsplus"] %}
 aaa authentication login default group {{ group.name }} local
 aaa authentication enable default group {{ group.name }} enable
