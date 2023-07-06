@@ -4,7 +4,7 @@ aaa group server tacacs+ {{ group.name }}
  server name {{ server.name }}
  {% endfor -%}   
 {% endfor %}
-!
+
 {% for group in config_context["aaa"]["group"]["server"]["US"]["tacacsplus"] %}
 aaa authentication login default group {{ group.name }} local
 aaa authentication enable default group {{ group.name }} enable
