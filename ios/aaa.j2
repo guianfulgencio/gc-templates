@@ -1,0 +1,19 @@
+{% for group in aaa["aaa"]["group"]["server"]["US"]["tacacsplus"] %}
+aaa authentication login default group {{ group.name }} local
+aaa authentication enable default group {{ group.name }} enable
+aaa authorization config-commands
+aaa authorization exec default group {{ group.name }} if-authenticated
+aaa authorization commands 0 default group {{ group.name }} if-authenticated 
+aaa authorization commands 1 default group {{ group.name }} if-authenticated 
+aaa authorization commands 15 default group {{ group.name }} if-authenticated 
+aaa authorization reverse-access default group {{ group.name }} if-authenticated 
+aaa accounting update newinfo
+aaa accounting dot1x default start-stop group {{ group.name }}
+aaa accounting exec default start-stop group {{ group.name }}
+aaa accounting commands 0 default start-stop group {{ group.name }}
+aaa accounting commands 1 default start-stop group {{ group.name }}
+aaa accounting commands 15 default start-stop group {{ group.name }}
+aaa accounting connection default start-stop group {{ group.name }}
+aaa accounting system default start-stop group {{ group.name }}
+aaa session-id common
+{% endfor %}
