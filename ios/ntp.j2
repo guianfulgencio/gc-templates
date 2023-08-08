@@ -1,4 +1,4 @@
 ntp access-group peer {{ config_context['ntp']['access-group']['peer']['acl'] }}
 {% for server in config_context['ntp']['server']['US']['server-list'] %}
-ntp server {{ server.ip-address }}
+ntp server {{ server[ip-address] }}
 {% endfor %}
