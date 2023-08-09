@@ -1,5 +1,5 @@
 {% for server in config_context['ntp']['server']['US']['server-list'] %}
- {% if config_context['interfaces'] is defined and config_context['interfaces'][0].vrf is defined %}
+ {% if config_context['interfaces'] is defined and config_context['interfaces'][0]['vrf'] is defined %}
 ntp server {{ server.ip }} use-vrf '{{ interfaces[0].vrf.name }}'
  {% else %}
 ntp server {{ server.ip }} use-vrf default
