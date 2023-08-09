@@ -1,4 +1,4 @@
-{% for server in config_context['ntp']['server']['US']['server-list'] -%}
+{% for server in config_context['ntp']['server']['US']['server-list'] %}
  {% for interface in config_context['interfaces'] %}
 ntp server {{ server.ip }} prefer use-vrf {% if interface.vrf is defined %}{{ interface.vrf.name }}{% else %}default{% endif %}
  {% endfor -%}
