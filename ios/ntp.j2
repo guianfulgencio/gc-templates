@@ -2,6 +2,6 @@ ntp access-group peer {{ config_context['ntp']['access-group']['peer']['acl'] }}
 {% for server in config_context['ntp']['server']['US']['server-list'] %}
 ntp server {{ server.ip }}
 {% endfor %}
-{% if management is defined and management.interface is defined %}
+{% if config_context['management'] is defined and config_context['management']['interface'] is defined %}
 logging source-interface {{ config_context['management']['interface']['name']}}{{config_context['management']['interface']['number']}}
 {% endif %}
