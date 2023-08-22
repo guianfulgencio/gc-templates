@@ -1,4 +1,4 @@
-{% for server in config_context['ntp']['servers'] %}
+{% for server in config_context['ntp'] %}
 set system ntp server {{ server['ip'] }}
 {% endfor %}
 set firewall family inet filter CVX-FW-CPP-01 term accept-NTP from source-prefix-list AP-NTP-Servers
