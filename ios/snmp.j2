@@ -1,3 +1,6 @@
+!
+snmp-server location {{ obj.site.slug | upper }} / {{ obj.site.physical_address | replace("\n", " ") }} / {{ obj.site.region.parent }} / {{ obj.site.region.parent.parent }} /US-NA-Utility-WAN-Remotes/Criticality-Low
+!
 snmp-server group CVX v3 auth
 snmp-server group CVX2 v3 auth
 snmp-server group CVX-NMS v3 auth
