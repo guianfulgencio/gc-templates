@@ -3,4 +3,5 @@ logging buffered {{ config_context['logging']['buffered']['size']['size-value'] 
 logging reload warnings
 no logging console
 logging history size {{ config_context['logging']['history']['size'] }}
+logging source-interface {{ primary_ip4["interface"]["name"] }}
 
