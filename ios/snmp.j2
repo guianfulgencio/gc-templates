@@ -1,11 +1,40 @@
 snmp-server source-interface {{ primary_ip4["interface"]["name"] }}
 !
-snmp-server group CVX v3 auth
-snmp-server group CVX2 v3 auth
-snmp-server group CVX-NMS v3 auth
-snmp-server group CVX-NMS v3 priv read V3Read write V3Write notify V3Notify access cvx-snmpv3-acl
-snmp-server group cvx2021 v3 priv
-snmp-server group default v3 priv
+snmp-server user cvx2023 CVX-NMS v3 auth sha <auth-password> priv aes 128 <priv-password> 
+!
+snmp-server group CVX-NMS v3 priv read V3Read write V3Write access cvx-snmpv3-acl
+!
+snmp-server host <server> version 3 priv cvx2023
+snmp-server host <server> version 3 auth cvx2023
+!
+snmp-server view V3Read iso included
+snmp-server view V3Write iso included
+snmp-server view V3Notify iso included
+snmp-server trap link ietf
+snmp-server trap-source  vlan3218
+snmp-server enable traps snmp linkdown linkup coldstart warmstart
+snmp-server enable traps license
+snmp-server enable traps entity
+snmp-server enable traps envmon fan shutdown supply temperature status
+snmp-server enable traps config
+no snmp trap link-status 
+snmp-server enable traps memory
+snmp ifmib ifindex persist
+!
+ip access-list standard cvx-snmpv3-acl
+permit 146.22.71.201
+permit 146.40.3.35
+permit 146.42.255.132
+permit 146.42.69.246
+permit 146.35.147.59
+permit 146.40.2.12
+permit 146.40.2.7
+permit 146.40.3.120
+permit 146.40.3.119
+permit 139.65.136.0 0.0.3.255
+permit 139.65.140.0 0.0.3.255
+permit 139.65.192.0 0.0.15.255
+deny   any log
 !
 snmp-server location {{ obj.site.slug | upper }} / {{ obj.site.physical_address | replace("\n", " ") }} / {{ obj.site.region.parent }} / {{ obj.site.region.parent.parent }} /US-NA-Utility-WAN-Remotes/Criticality-Low
 !
