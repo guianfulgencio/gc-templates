@@ -21,20 +21,5 @@ no snmp trap link-status
 snmp-server enable traps memory
 snmp ifmib ifindex persist
 !
-ip access-list standard cvx-snmpv3-acl
-permit 146.22.71.201
-permit 146.40.3.35
-permit 146.42.255.132
-permit 146.42.69.246
-permit 146.35.147.59
-permit 146.40.2.12
-permit 146.40.2.7
-permit 146.40.3.120
-permit 146.40.3.119
-permit 139.65.136.0 0.0.3.255
-permit 139.65.140.0 0.0.3.255
-permit 139.65.192.0 0.0.15.255
-deny   any log
-!
 snmp-server location {{ obj.site.slug | upper }} / {{ obj.site.physical_address | replace("\n", " ") }} / {{ obj.site.region.parent }} / {{ obj.site.region.parent.parent }} /US-NA-Utility-WAN-Remotes/Criticality-Low
 !
