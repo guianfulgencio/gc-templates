@@ -5,7 +5,7 @@ snmp-server source-interface {{ primary_ip4["interface"]["name"] }}
 !
 snmp-server group CVX-NMS v3 priv read V3Read write V3Write access cvx-snmpv3-acl
 !
-{% for server in config_context["snmp_config"][snmpv3]["snmp_server_hosts"] %}
+{% for server in config_context["snmp_config"]["snmpv3"]["snmp_server_hosts"] %}
 snmp-server host {{ server.host }} version 3 priv cvx2023
 snmp-server host {{ server.host }} version 3 auth cvx2023
 {% endfor %}
