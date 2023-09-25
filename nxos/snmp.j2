@@ -1,1 +1,3 @@
-test
+!
+snmp-server location {{ site["name"] }} / {{ site["physical_address"] | replace("\n", " ") | replace("\r", "") }} / {{ site["region"]["name"] }} / {{ site["region"]["parent"]["name"] }} /US-NA-Utility-WAN-Remotes/Criticality-Low
+!
