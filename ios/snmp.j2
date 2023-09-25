@@ -7,7 +7,7 @@ snmp-server source-interface {{ primary_ip4["interface"]["name"] }}
 snmp-server group {{ group.id }} v3 {{ group.v3.securitylevel }} read V3Read write V3Write access {{ group.v3.access }}
 {% endfor %}
 !
-{% for server in config_context["snmp"]["server"] %}
+{% for server in config_context["snmp"]["servers"] %}
 snmp-server host {{ server.ip }} version {{ server.version}} {{ server.securitylevel}} {{ server.user }}
 {% endfor %}
 !
