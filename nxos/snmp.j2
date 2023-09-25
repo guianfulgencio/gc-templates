@@ -3,7 +3,7 @@ snmp-server location {{ site["name"] }} / {{ site["physical_address"] | replace(
 !
 {% for name in config_context["snmp"]["users"]["names"] %}
 snmp-server user {{ name.username }}  {{ name.grpname }} auth sha {{ name.v3.auth.sha.auth.authpass }} priv aes-128 {{ name.v3.auth.sha.auth.priv.aes.algo128.privpass.privpass }} 
-snmp-server user {{ user }} use-ipv4acl {{ access }}
+snmp-server user {{ name.username }} use-ipv4acl cvx-snmpv3-acl
 {% endfor %}
 !
 {% for server in config_context["snmp"]["servers"] %}
