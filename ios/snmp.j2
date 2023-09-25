@@ -3,10 +3,10 @@ snmp-server location {{ site["name"] }} / {{ site["physical_address"] | replace(
 !
 snmp-server source-interface {{ primary_ip4["interface"]["name"] }}
 !
-snmp-server group {{ config_context["snmp"]["group"][0]["id"] }} v3 priv read V3Read write V3Write access cvx-snmpv3-acl
+snmp-server group {{ config_context["snmp"]["group"][0]["id"] }} v3 priv read V3Read write V3Write access {{ config_context["snmp"]["group"][0]["v3"]["access"] }}
 !
 {% for server in config_context["snmp"]["server"] %}
-snmp-server host {{ server.ip }} version 3 priv cvx2023
+snmp-server host {{ server.ip }} version {{ server.version}} {{ server.securitylevel}} {{ server.user }}
 {% endfor %}
 !
 snmp-server view V3Read iso included
