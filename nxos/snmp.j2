@@ -1,8 +1,9 @@
 !
 snmp-server location {{ site["name"] }} / {{ site["physical_address"] | replace("\n", " ") | replace("\r", "") }} / {{ site["region"]["name"] }} / {{ site["region"]["parent"]["name"] }} /US-NA-Utility-WAN-Remotes/Criticality-Low
 !
-{% for user in config_context["snmp"]["users"] %}
-snmp-server user {{ server.user }}  {{ group }} auth sha {{ auth }} priv aes-128 {{ priv }} snmp-server user {{ server.user }} use-ipv4acl {{ access }}
+{% for name in config_context["snmp"]["users"]["names"] %}
+snmp-server user {{ name.username }}  {{ name.grpname }} auth sha {{ name.v3.auth.sha.auth.authpass }} priv aes-128 {{ name.v3.auth.sha.auth.priv.aes.algo128.privpass.privpass }} 
+snmp-server user {{ user }} use-ipv4acl {{ access }}
 {% endfor %}
 !
 {% for server in config_context["snmp"]["servers"] %}
