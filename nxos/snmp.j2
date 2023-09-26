@@ -1,14 +1,15 @@
 snmp-server location {{ site["name"] }} / {{ site["physical_address"] | replace("\n", " ") | replace("\r", "") }} / {{ site["region"]["name"] }} / {{ site["region"]["parent"]["name"] }} /US-NA-Utility-WAN-Remotes/Criticality-Low
 !
-{% for name in config_context["snmp"]["users"]["names"] %}
-snmp-server user {{ name.username }}  {{ name.grpname }} auth sha {{ name.v3.auth.sha.auth.authpass }} priv aes-128 {{ name.v3.auth.sha.auth.priv.aes.algo128.privpass.privpass }} 
-snmp-server user {{ name.username }} use-ipv4acl {{ config_context["snmp"]["group"][0]["v3"]["access"]  }}
-{% endfor %}
+{% for name in config_context["snmp"]["users"] -%}
+snmp-server user {{ name }} CVX-NMS auth sha {{ auth_pw }} priv aes-128 {{ priv_pw }} localizedkey
+snmp-server user {{ name }} use-ipv4acl cvx-snmpv3-acl
+{% endfor -%}
 !
-{% for server in config_context["snmp"]["servers"] %}
-snmp-server host {{ server.ip }} traps version {{ server.version}} {{ server.securitylevel}} {{ server.user }}
-{% endfor %}
+{% for server in config_context["snmp"]["servers_v3"] -%}
+snmp-server host {{ host }} traps version 3 {{ securitylevel }} {{ user }}
+{% endfor -%}
 !
 snmp-server source-interface traps {{ primary_ip4["interface"]["name"] }}
 snmp-server enable traps config ccmCLIRunningConfigChanged
 snmp-server enable traps snmp authentication
+snmp-server enable traps link cisco-xcvr-mon-status-chg
