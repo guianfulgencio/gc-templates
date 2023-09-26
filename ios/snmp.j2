@@ -22,3 +22,13 @@ snmp-server enable traps config
 no snmp trap link-status 
 snmp-server enable traps memory
 snmp ifmib ifindex persist
+!
+ip access-list standard cvx-snmpv3-acl
+ {% for ip in config_context["snmp"]["acl"] %}
+{% set ipv4 = [acl].split('/')[0] -%}
+{% set mask = [acl].split('/')[1] -%}
+{% if  mask = 32 -%}
+{{ loop.index * 10 }} permit {{ ipv4 }} }}
+ {% endfor %}
+{{ (config_context["snmp"]["acl"]|length + 1) * 10 }} deny   any log
+!
