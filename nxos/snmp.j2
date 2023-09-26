@@ -8,7 +8,7 @@ snmp-server user {{ user["id"] }} use-ipv4acl cvx-snmpv3-acl
 {% endfor -%}
 !
 {% for server in config_context["snmp"]["servers_v3"] -%}
-snmp-server host {{ host }} traps version 3 {{ securitylevel }} {{ user }}
+snmp-server host {{ server["host"] }} traps version 3 {{ server["securitylevel"] }} {{ server["user"] }}
 {% endfor -%}
 !
 snmp-server source-interface traps {{ primary_ip4["interface"]["name"] }}
