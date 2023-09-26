@@ -25,8 +25,8 @@ snmp ifmib ifindex persist
 !
 ip access-list standard cvx-snmpv3-acl
  {% for ip in config_context["snmp"]["acl"] %}
-{% set ipv4 = [ip].split('/')[0] -%}
-{% set mask = [ip].split('/')[1] -%}
+{% set ipv4 = ip.split('/')[0] -%}
+{% set mask = ip.split('/')[1] -%}
 {% if  mask == 32 -%}
 {{ loop.index * 10 }} permit {{ ipv4 }} }}
 {% endif %}
