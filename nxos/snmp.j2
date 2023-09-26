@@ -1,8 +1,10 @@
 snmp-server location {{ site["name"] }} / {{ site["physical_address"] | replace("\n", " ") | replace("\r", "") }} / {{ site["region"]["name"] }} / {{ site["region"]["parent"]["name"] }} /US-NA-Utility-WAN-Remotes/Criticality-Low
 !
-{% for name in config_context["snmp"]["users"] -%}
-snmp-server user {{ name }} CVX-NMS auth sha {{ auth_pw }} priv aes-128 {{ priv_pw }} localizedkey
-snmp-server user {{ name }} use-ipv4acl cvx-snmpv3-acl
+{% for user in config_context["snmp"]["users"] -%}
+snmp-server user {{ user["id"] }} CVX-NMS auth sha {{ user["auth_pw"] }} priv aes-128 {{ user["priv_pw"] }} localizedkey
+{% endfor -%}
+{% for user in config_context["snmp"]["users"] -%}
+snmp-server user {{ user["id"] }} use-ipv4acl cvx-snmpv3-acl
 {% endfor -%}
 !
 {% for server in config_context["snmp"]["servers_v3"] -%}
