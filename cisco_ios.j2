@@ -1,32 +1,13 @@
-Building configuration...
-
-Current configuration : 114118 bytes
-!
-! Last configuration change at 02:15:21 UTC Thu Jun 15 2023 by admin
-!
-service nagle
-no service pad
-service tcp-keepalives-in
-service tcp-keepalives-out
-service timestamps debug datetime msec localtime show-timezone
-service timestamps log datetime msec localtime show-timezone
-service password-encryption
-service call-home
-no platform punt-keepalive disable-kernel-core
-!
 {% include './ios/hostname.j2' %}
 
-!
 {% include './ios/ntp.j2' %}
 
-!
 {% include './ios/logging.j2' %}
 
-!
 {% include './ios/tacacs.j2' %}
-!
+
 {% include './ios/aaa.j2' %}
-!
+
 {% include './ios/snmp.j2' %}
-!
+
 {% include './ios/banner.j2' %}
