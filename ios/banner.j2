@@ -1,3 +1,29 @@
+{% if site["region"]["name"] == "Brazil" -%}
+banner login ^C
+##################################################################
+NOTICE TO USERS:
+This Chevron system is for use by  authorized  users  only. To the
+extent permitted by law, by using this system you acknowledge  and
+consent to the monitoring, access, use, and disclosure by  Chevron
+of any information generated, received, or stored  on  the  system
+and waive any right or expectation of privacy in  connection  with
+your use.
+Unauthorized and/or improper use of this  system  in  violation of
+Chevron corporate policies is  not  tolerated  and  may  result in
+disciplinary action, including termination.
+
+AVISO AOS USUARIOS:
+Este sistema Chevron e para uso exclusivo de usuarios autorizados.
+Na  medida  do  permitido  por  lei, ao utilizar este sistema voce
+reconhece e concorda com o monitoramento, acesso, uso e divulgacao
+pela Chevron de qualquer informacao gerada, recebida ou armazenada
+no  sistema  e  renuncia  a  qualquer  direito  ou  expectativa de
+privacidade em relacao ao seu uso.
+O uso nao autorizado e/ou indevido deste sistema, em  violacao das
+politicas corporativas da  Chevron, nao  sera  tolerado  e  podera
+resultar em medidas disciplinares, inclusive demissao.
+##################################################################^C
+{% else -%}
 banner login ^C
 ****************************************************
 WARNING TO UNAUTHORIZED USERS:
@@ -13,4 +39,5 @@ this system. Unauthorized and/or improper use of
 this system, as delineated by corporate policies,
 is not tolerated and the company may take formal
 action against such individuals.
-****************************************************^C 
+****************************************************^C
+{% endif -%}
