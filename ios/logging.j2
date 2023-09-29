@@ -9,9 +9,9 @@ logging source-interface {{ primary_ip4["interface"]["name"] }}
 {% for server in config_context["logging"]["servers"] -%}
   {% if server["transport"] is defined -%}
     {% if server["port"] is defined -%}
-      logging host {{ server["ip"] }} transport {{ server["transport"] }} port {{ server["port"] }}
+    logging host {{ server["ip"] }} transport {{ server["transport"] }} port {{ server["port"] }}
     {% else -%}
-      logging host {{ server["ip"] }} transport {{ server["transport"] }}
+    logging host {{ server["ip"] }} transport {{ server["transport"] }}
     {% endif %}
   {% else -%}
     logging host {{ server["ip"] }}
