@@ -1,4 +1,4 @@
-aaa group server tacacs+ {{ config_context["aaa"]["group"]["tacacs"][0]["name"] }}
+aaa group server tacacs+ ISE
  {% for server in config_context["aaa"]["server"] -%}
  server name {{ server["name"] }}
  {% endfor -%}   
