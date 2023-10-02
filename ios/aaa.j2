@@ -5,10 +5,10 @@ server name ISE{{ loop.index }}
 ip tacacs source-interface {{ primary_ip4["interface"]["name"] }}
 !
 {% for server in config_context["aaa"]["servers"] -%}
-tacacs server ISE{{ loop.index }}
-address ipv4 {{ server }}
-key 7 06031D344F4B1A1606041B08
-timeout 10
+tacacs server ISE{{ loop.index -}}
+ address ipv4 {{ server -}}
+ key 7 06031D344F4B1A1606041B08
+ timeout 10
 {% endfor -%}
 !
 aaa authentication login default group ISE local
