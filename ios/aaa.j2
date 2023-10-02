@@ -1,15 +1,3 @@
-aaa group server tacacs+ ISE
- {% for server in config_context["aaa"]["server"] -%}
- server name {{ server["name"] }}
- {% endfor -%}   
- ip tacacs source-interface {{ primary_ip4["interface"]["name"] }}
-!
-{% for server in config_context["aaa"]["server"] %}
-tacacs server {{ server["name"] }}
- address ipv4 {{ server["ip"] }} 
- key 7 <redacted>
- timeout 10
-{% endfor %}
 !
 {% for server in config_context["aaa"]["servers"] -%}
 tacacs server ISE{{ loop.index }}
