@@ -12,7 +12,7 @@ logging host {{ server["ip"] }} transport {{ server["transport"] }} port {{ serv
 {% elif server["transport"] is defined -%}
 logging host {{ server["ip"] }} transport {{ server["transport"] }}
 {% else -%}
-logging host {{ server }}
+logging host {{ server["ip"] }}
 {% endif %}
 {% endfor %}
 !
