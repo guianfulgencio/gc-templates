@@ -10,10 +10,10 @@ logging source-interface {{ primary_ip4["interface"]["name"] }}
   {% if server["transport"] is defined -%}
     {% if server["port"] is defined -%}
 logging host {{ server["ip"] }} transport {{ server["transport"] }} port {{ server["port"] }}
-    {% else -%}
+  {% else -%}
 logging host {{ server["ip"] }} transport {{ server["transport"] }}
     {% endif %}
-  {% else -%}
+{% else -%}
 logging host {{ server["ip"] }}
   {% endif %}
 {% endfor %}
