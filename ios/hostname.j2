@@ -1,5 +1,1 @@
 hostname {{ hostname.split('.')[0] }}
-!
-ip ssh source-interface {{ primary_ip4["interface"]["name"] }}
-ip ssh version 2
-ip scp server enable
