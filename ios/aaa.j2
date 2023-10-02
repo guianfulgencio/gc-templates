@@ -3,9 +3,9 @@ tacacs-server host {{ server }}
 {% endfor -%}
 !
 aaa group server tacacs+ ISE
-{% for server in config_context["aaa"]["servers"] -%}
+{% for server in config_context["aaa"]["servers"] %}
  server name ISE{{ loop.index }}
-{% endfor -%}
+{% endfor %}
  ip tacacs source-interface {{ primary_ip4["interface"]["name"] }}
 !
 {% for server in config_context["aaa"]["servers"] %}
