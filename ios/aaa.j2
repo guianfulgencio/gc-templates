@@ -3,8 +3,8 @@
 {% for server in config_context["aaa"]["servers"] %}
 tacacs-server host {{ server }}
 {% endfor %}
-aaa authentication login default group ISE local
-aaa authentication enable default group ISE enable
+aaa authentication login default group tacacs+ local
+aaa authentication enable default group tacacs+ enable
 aaa authorization config-commands
 aaa authorization exec default group tacacs+ if-authenticated
 aaa authorization commands 0 default group tacacs+ if-authenticated 
