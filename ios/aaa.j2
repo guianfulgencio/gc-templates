@@ -1,4 +1,5 @@
 {% if tags == [] %}
+
 aaa group server tacacs+ ISE
  {% for server in config_context["aaa"]["servers"] %}
  server name ISE{{ loop.index }}
@@ -30,6 +31,7 @@ aaa session-id common
 !
  {% endfor %}
 {% else %}
+
  {% for tag in tags %}
  {% if tag["name"] == "legacy" %}
   {% for server in config_context["aaa"]["servers"] %}
@@ -54,4 +56,5 @@ aaa accounting system default start-stop group tacacs+
 aaa session-id common
 !
  {% endfor %}
+ {% endif %}
 {% endif %}
