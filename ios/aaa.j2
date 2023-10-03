@@ -1,8 +1,8 @@
-{{% if tag == "legacy" %}}
+{% if tag == "legacy" %}
 {% for server in config_context["aaa"]["servers"] %}
 tacacs-server host {{ server }}
-{% endfor -%}
-{{% else %}}
+{% endfor %}
+{% else %}
 aaa group server tacacs+ ISE
 {% for server in config_context["aaa"]["servers"] %}
  server name ISE{{ loop.index }}
@@ -14,8 +14,8 @@ tacacs server ISE{{ loop.index }}
  address ipv4 {{ server }}
  key 7 06031D344F4B1A1606041B08
  timeout 10
-{% endfor -%}
-{{% endif %}}
+{% endfor %}
+{% endif %}
 !
 aaa authentication login default group ISE local
 aaa authentication enable default group ISE enable
