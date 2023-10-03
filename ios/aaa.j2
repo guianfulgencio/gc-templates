@@ -1,4 +1,5 @@
-{% if tags[0]["name"] == "legacy" %}
+{% for tag in tags %}
+{% if tag["name"] == "legacy" %}
 {% for server in config_context["aaa"]["servers"] %}
 tacacs-server host {{ server }}
 {% endfor %}
@@ -67,4 +68,5 @@ aaa accounting commands 1 default start-stop group ISE
 aaa accounting commands 15 default start-stop group ISE
 aaa accounting connection default start-stop group ISE
 aaa accounting system default start-stop group ISE
+{% endfor %}
 aaa session-id common
