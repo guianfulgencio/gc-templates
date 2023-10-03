@@ -4,15 +4,7 @@
 
 {% include './ios/logging.j2' %}
 
-{% if tags == [] %}
-  {% include "./config_templates/cisco/cisco_ios/aaa.j2" %}
-{% else %}
-  {% for tag in tags %}
-    {% if tag["name"] == "aaa_legacy" %}
-      {% include "./config_templates/cisco/cisco_ios/aaa_legacy.j2" %}
-    {% endif %}
-  {% endfor %}
-{% endif %}
+{% include './ios/aaa.j2' %}
 
 {% include './ios/snmp.j2' %}
 
