@@ -1,16 +1,16 @@
 {% if tags == [] %}
 aaa group server tacacs+ ISE
- {% for server in config_context["aaa"]["servers"] %}
+{% for server in config_context["aaa"]["servers"] %}
  server name ISE{{ loop.index }}
- {% endfor %}
+{% endfor %}
  ip tacacs source-interface {{ primary_ip4["interface"]["name"] }}
 !
- {% for server in config_context["aaa"]["servers"] %}
+{% for server in config_context["aaa"]["servers"] %}
 tacacs server ISE{{ loop.index }}
  address ipv4 {{ server }}
  key 7 06031D344F4B1A1606041B08
  timeout 10
- {% endfor %}
+{% endfor %}
 aaa authentication login default group ISE local
 aaa authentication enable default group ISE enable
 aaa authorization config-commands
@@ -29,11 +29,11 @@ aaa accounting connection default start-stop group ISE
 aaa accounting system default start-stop group ISE
 aaa session-id common
 {% else %}
- {% for tag in tags %}
+{% for tag in tags %}
  {% if tag["name"] == "legacy" %}
-  {% for server in config_context["aaa"]["servers"] %}
+{% for server in config_context["aaa"]["servers"] %}
 tacacs-server host {{ server }}
-  {% endfor %}
+{% endfor %}
   aaa authentication login default group tacacs+ local
 aaa authentication enable default group tacacs+ enable
 aaa authorization config-commands
@@ -52,5 +52,5 @@ aaa accounting connection default start-stop group tacacs+
 aaa accounting system default start-stop group tacacs+
 aaa session-id common
  {% endif %}
- {% endfor %}
+{% endfor %}
 {% endif %}
