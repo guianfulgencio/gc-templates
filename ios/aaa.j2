@@ -1,4 +1,4 @@
-{% if tags["name"] == "legacy" %}
+{% if tags[0]["name"] == "legacy" %}
 {% for server in config_context["aaa"]["servers"] %}
 tacacs-server host {{ server }}
 {% endfor %}
