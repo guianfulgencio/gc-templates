@@ -1,6 +1,6 @@
 {% for server in config_context["aaa"]["servers"] %}
 tacacs server ISE1
- address ipv4 {{ server["ip"] }} 
+ address ipv4 {{ server }} 
  key 7 <redacted>
  timeout 10
 {% endfor %}
