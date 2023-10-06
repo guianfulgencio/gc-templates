@@ -1,2 +1,2 @@
 hostname {{ hostname.split('.')[0] }}
-{{ "192.168.0.0/24" | ip.ipaddress_network("hostmask") }}
+{{ (obj.commit_rate * 1000) | bits_to_name }}
