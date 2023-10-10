@@ -23,6 +23,7 @@ no snmp trap link-status
 snmp-server enable traps memory
 snmp ifmib ifindex persist
 !
+ip access-list standard cvx-snmpv3-acl
  {% for cidr in config_context["snmp"]["acl"] %}
 {% set ip = cidr | ipaddress_network("network_address") -%}
 {% set prefix = cidr | ipaddress_network("prefixlen") -%}
