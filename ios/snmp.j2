@@ -30,7 +30,7 @@ ip access-list standard cvx-snmpv3-acl
 {% if  mask == "32" -%}
 {{ loop.index * 10 }} permit {{ ipv4 }}
 {% else %}
-{{ loop.index * 10 }} permit {{ ip }} {{ ip | ipaddress_network("hostmask") }}
+{{ loop.index * 10 }} permit {{ ip }} {{ ipv4 | ipaddress_network("hostmask") }}
 {% endif %}
  {% endfor %}
 {{ (config_context["snmp"]["acl"]|length + 1) * 10 }} deny   any log
