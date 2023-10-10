@@ -27,11 +27,10 @@ ip access-list standard cvx-snmpv3-acl
  {% for ip in config_context["snmp"]["acl"] %}
 {% set ipv4 = ip.split('/')[0] -%}
 {% set mask = ip.split('/')[1] -%}
-{% set wildcardmask = "0.0.3.255" if mask == "22" else "0.0.255.255" -%}
 {% if  mask == "32" -%}
 {{ loop.index * 10 }} permit {{ ipv4 }}
 {% else %}
-{{ loop.index * 10 }} permit {{ ipv4 }} {{ wildcardmask }}
+{{ loop.index * 10 }} permit {{ ip }} {{ ip | "hostmask" }}
 {% endif %}
  {% endfor %}
 {{ (config_context["snmp"]["acl"]|length + 1) * 10 }} deny   any log
