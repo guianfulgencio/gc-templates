@@ -10,7 +10,7 @@ snmp-server host {{ server[0] }} version {{ server["version"] }} {{ server["secu
 {% endfor -%}
 !
 {% for server, server_config in config_context["snmp"]["servers"].items() %}
-snmp-server host {{ server }} version {{ server_config["version"] }} {{ server_config["securitylevel"] }} {{ server_config["user"] }}
+snmp-server host {{ server }} version 3 {{ server_config["securitylevel"] }} {{ server_config["user"] }}
 {% endfor %}
 !
 snmp-server view V3Read iso included
