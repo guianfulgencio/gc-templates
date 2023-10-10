@@ -9,6 +9,10 @@ snmp-server group CVX-NMS v3 priv read V3Read write V3Write access cvx-snmpv3-ac
 snmp-server host {{ server[0] }} version {{ server["version"] }} {{ server["securitylevel"] }} {{ server["user"] }}
 {% endfor -%}
 !
+{% for server, server_config in config_context["snmp"]["servers"].items() %}
+snmp-server host {{ server }} version {{ server_config["version"] }} {{ server_config["securitylevel"] }} {{ server_config["user"] }}
+{% endfor %}
+!
 snmp-server view V3Read iso included
 snmp-server view V3Write iso included
 snmp-server view V3Notify iso included
