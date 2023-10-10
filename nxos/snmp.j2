@@ -18,7 +18,7 @@ snmp-server enable traps link cisco-xcvr-mon-status-chg
 !
 ip access-list cvx-snmpv3-acl
   statistics per-entry
-  {% for ip in config_context["snmp"]["acl"] %}
-{{ loop.index * 10 }} permit {{ ip }} any
+  {% for cidr in config_context["snmp"]["acl"] %}
+{{ loop.index * 10 }} permit {{ cidr }} any
   {% endfor %}
 {{ (config_context["snmp"]["acl"]|length + 1) * 10 }} deny ip any any log
