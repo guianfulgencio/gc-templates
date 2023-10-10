@@ -27,7 +27,7 @@ ip access-list standard cvx-snmpv3-acl
 {% for cidr in config_context["snmp"]["acl"] %}
   {% set ip = cidr | ipaddress_network("network_address") %}
   {% set prefix = cidr | ipaddress_network("prefixlen") %}
-  {{ loop.index * 10 }} permit {{ ip }}{% if prefix != 32 %} {{ cidr | ipaddress_network("hostmask") }}{% endif %}
+  {{ loop.index * 10 }} permit {{ ip }}{% if prefix != 32 -%} {{ cidr | ipaddress_network("hostmask") }}{% endif -%}
 {% endfor %}
 {{ (config_context["snmp"]["acl"]|length + 1) * 10 }} deny   any log
 !
