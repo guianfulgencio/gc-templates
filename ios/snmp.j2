@@ -25,7 +25,7 @@ snmp ifmib ifindex persist
 !
 ip access-list standard cvx-snmpv3-acl
  {% for cidr in config_context["snmp"]["acl"] %}
-{% set ipv4 = cidr.split('/')[0] -%}
+{% set ipv4 = cidr | ipaddress_network("network_address") -%}
 {% set prefix = cidr | ipaddress_network("prefixlen") -%}
 {% if  prefix == 32 -%}
 {{ loop.index * 10 }} permit {{ ipv4 }}
