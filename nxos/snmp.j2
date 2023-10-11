@@ -1,5 +1,16 @@
 snmp-server location {{ site["name"] }} / {{ site["physical_address"] | replace("\n", " ") | replace("\r", "") }} / {{ site["region"]["name"] }} / {{ site["region"]["parent"]["name"] }} /US-NA-Utility-WAN-Remotes/Criticality-Low
 !
+{% for username, cred in config_context["snmp"]["users"].items() -%}
+snmp-server user {{ username }} CVX-NMS auth sha {{ cred["auth_pw"] }} priv aes-128 {{ cred["priv_pw"] }} localizedkey
+{% endfor -%}
+{% for username, cred in config_context["snmp"]["users"].items() -%}
+snmp-server user {{ username }} use-ipv4acl cvx-snmpv3-acl
+{% endfor -%}
+!
+{% for server, attrib in config_context["snmp"]["servers"].items() -%}
+snmp-server host {{ server }} traps version {{ attrib["version"] }} {{ attrib["securitylevel"] }} {{ attrib["user"] }}
+{% endfor -%}
+!
 snmp-server source-interface traps {{ primary_ip4["interface"]["name"] }}
 snmp-server enable traps config ccmCLIRunningConfigChanged
 snmp-server enable traps snmp authentication
