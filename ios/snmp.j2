@@ -1,5 +1,5 @@
 !
-snmp-server location {{ device_role["name"] | default ('Unknown') }} : {{ site["slug"] | upper }} : {{ rack[name] | default ('Unknown') | upper }}-U{{ position | default ('00') }} : {{ latitude | default ("0.0") }},{{ longitude | default ("0.0") }} 
+snmp-server location {{ device_role["name"] | default ('Unknown') }} : {{ site["slug"] | upper }} : {{ rack["name"] | default ('Unknown') | upper }}-U{{ position | default ('00') }} : {{ latitude | default ("0.0") }},{{ longitude | default ("0.0") }} 
 !
 snmp-server source-interface {{ primary_ip4["interface"]["name"] }}
 !
