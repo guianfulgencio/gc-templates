@@ -5,7 +5,7 @@ logging reload warnings
 no logging console
 logging history size 10
 logging source-interface {{ primary_ip4["interface"]["name"] }}
-{% for server, attrib in config_context["logging"]["servers"].items() +%}
+{% for server, attrib in config_context["logging"]["servers"].items() %}
 logging host {{ server }}{% if attrib["transport"] is defined %}transport {{ attrib["transport"] }} {% endif %}{% if attrib["port"] is defined %}port {{ attrib["port"] }}{% endif %}
 
 {% endfor %}
