@@ -1,4 +1,3 @@
-!
 logging snmp-authfail
 logging trap informational
 logging buffered 128000
@@ -6,13 +5,7 @@ logging reload warnings
 no logging console
 logging history size 10
 logging source-interface {{ primary_ip4["interface"]["name"] }}
-{% for server in config_context["logging"]["servers"] -%}
-{% if server["transport"] is defined and server["port"] is defined -%}
-logging host {{ server["ip"] }} transport {{ server["transport"] }} port {{ server["port"] }}
-{% elif server["transport"] is defined -%}
-logging host {{ server["ip"] }} transport {{ server["transport"] }}
-{% else -%}
-logging host {{ server["ip"] }}
-{% endif %}
+{% for server, attrib in config_context["logging"]["servers"].items() -%}
+logging host {{ server }} {% if attrib["transport"] is defined %} transport {{ attrib["transport"] }}{% endif %} {% if attrib["port"] is defined %} port {{ attrib["port"] }}{% endif %}
 {% endfor %}
 !
