@@ -9,7 +9,7 @@ logging source-interface {{ primary_ip4["interface"]["name"] }}
  logging host {{ server }} 
  {% if attrib["transport"] is defined %}
  logging host {{ server }} transport {{ attrib["transport"] }} 
- {% elif attrib["transport"] and attrib["port"] is defined %} 
+ {% if attrib["transport"] and attrib["port"] is defined %} 
  logging host {{ server }} transport {{ attrib["transport"] }} port {{ attrib["port"] }} 
  {% endif %}
 {% endfor -%}
