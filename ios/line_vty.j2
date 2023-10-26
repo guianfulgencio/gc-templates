@@ -4,7 +4,7 @@ ip access-list standard cvx-vty-acl
 {% set prefix = cidr | ipaddress_network("prefixlen") -%}
 {{ loop.index * 10 }} permit {{ ip }} {% if  prefix == 32 -%} {% endif %} {{ cidr | ipaddress_network("hostmask") }} {% if  prefix != 32 -%} {% endif %} 
  {% endfor %}
-{{ (config_context["snmp"]["acl"]|length + 1) * 10 }} deny   any log
+{{ (config_context["line"]["acl"]|length + 1) * 10 }} deny   any log
 !
 line con 0
  session-timeout 10 
