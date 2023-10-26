@@ -1,19 +1,19 @@
-ip access-list standard 20
-
+ip access-list standard cvx-vty-acl
+ {% for cidr in config_context["line"]["acl"] %}
+{% set ip = cidr | ipaddress_network("network_address") -%}
+{% set prefix = cidr | ipaddress_network("prefixlen") -%}
+{% if  prefix == 32 -%}
+{{ loop.index * 10 }} permit {{ ip }}
+{% else %}
+{{ loop.index * 10 }} permit {{ ip }} {{ cidr | ipaddress_network("hostmask") }}
+{% endif %}
+ {% endfor %}
+{{ (config_context["snmp"]["acl"]|length + 1) * 10 }} deny   any log
 !
 line con 0
  session-timeout 10 
- access-class cvx-vty-acl in vrf-also
  timeout login response 15
  password 7 {{ line["password_hash"] }}
- logging synchronous
- transport preferred nonea
- transport output none
- stopbits 1
-line aux 0
- timeout login response 15
- password 7 {{ line["password_hash"] }}
- no exec
  stopbits 1
 line vty 0 4
  session-timeout 10 
@@ -21,7 +21,7 @@ line vty 0 4
  timeout login response 15
  password 7 {{ line["password_hash"] }}
  logging synchronous
- transport preferred none
+ transport preferred ssh
  transport input ssh
  transport output none
 line vty 5 15
@@ -30,5 +30,6 @@ line vty 5 15
  timeout login response 15
  password 7 {{ line["password_hash"] }}
  logging synchronous
- transport preferred none
+ transport preferred ssh
  transport input ssh
+ transport output none
