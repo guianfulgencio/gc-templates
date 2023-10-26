@@ -1,0 +1,34 @@
+ip access-list standard 20
+
+!
+line con 0
+ session-timeout 10 
+ access-class cvx-vty-acl in vrf-also
+ timeout login response 15
+ password 7 {{ line["password_hash"] }}
+ logging synchronous
+ transport preferred nonea
+ transport output none
+ stopbits 1
+line aux 0
+ timeout login response 15
+ password 7 {{ line["password_hash"] }}
+ no exec
+ stopbits 1
+line vty 0 4
+ session-timeout 10 
+ access-class cvx-vty-acl in vrf-also
+ timeout login response 15
+ password 7 {{ line["password_hash"] }}
+ logging synchronous
+ transport preferred none
+ transport input ssh
+ transport output none
+line vty 5 15
+ session-timeout 10 
+ access-class cvx-vty-acl in vrf-also
+ timeout login response 15
+ password 7 {{ line["password_hash"] }}
+ logging synchronous
+ transport preferred none
+ transport input ssh
