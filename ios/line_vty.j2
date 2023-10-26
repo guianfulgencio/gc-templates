@@ -9,13 +9,13 @@ ip access-list standard cvx-vty-acl
 line con 0
  session-timeout 10 
  timeout login response 15
- password 7 {{ line["password_hash"] }}
+ password 7 {{ config_context["line"]["password_hash"] }}
  stopbits 1
 line vty 0 4
  session-timeout 10 
  access-class cvx-vty-acl in vrf-also
  timeout login response 15
- password 7 {{ line["password_hash"] }}
+ password 7 {{ config_context["line"]["password_hash"] }}
  logging synchronous
  transport preferred ssh
  transport input ssh
@@ -24,7 +24,7 @@ line vty 5 15
  session-timeout 10 
  access-class cvx-vty-acl in vrf-also
  timeout login response 15
- password 7 {{ line["password_hash"] }}
+ password 7 {{ config_context["line"]["password_hash"] }}
  logging synchronous
  transport preferred ssh
  transport input ssh
