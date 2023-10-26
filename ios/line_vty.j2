@@ -2,7 +2,7 @@ ip access-list standard cvx-vty-acl
  {% for cidr in config_context["line"]["acl"] %}
 {% set ip = cidr | ipaddress_network("network_address") -%}
 {% set prefix = cidr | ipaddress_network("prefixlen") -%}
-{{ loop.index * 10 }} permit {{ ip }} {{ cidr | ipaddress_network("hostmask") }} {% if  prefix == 22 -%} {% endif %} 
+{{ loop.index * 10 }} permit {{ ip }} {% if  prefix == 32 -%} {% endif %}{{ cidr | ipaddress_network("hostmask") }} {% if  prefix != 32 -%} {% endif %} 
  {% endfor %}
 {{ (config_context["line"]["acl"]|length + 1) * 10 }} deny   any log
 !
