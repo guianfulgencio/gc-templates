@@ -13,7 +13,7 @@ lldp run
 ip tcp path-mtu-discovery
 no ip http server
 !
-ip ssh source-interface {{ primary_ip4["interface"]["name"] }}
+ip ssh source-interface {{ primary_ip4["interfaces"][0]["name"] }}
 ip ssh version 2
 ip scp server enable
 !
