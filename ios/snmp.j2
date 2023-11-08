@@ -13,7 +13,7 @@ snmp-server view V3Read iso included
 snmp-server view V3Write iso included
 snmp-server view V3Notify iso included
 snmp-server trap link ietf
-snmp-server trap-source {{ primary_ip4["interface"]["name"] }}
+snmp-server trap-source {{ primary_ip4["interfaces"]["name"] }}
 snmp-server enable traps snmp linkdown linkup coldstart warmstart
 snmp-server enable traps license
 snmp-server enable traps entity
