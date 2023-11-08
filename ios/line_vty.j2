@@ -17,7 +17,7 @@ line vty 0 4
  timeout login response 15
  password 7 {{ config_context["line"]["password_hash"] }}
  logging synchronous
- transport preferred ssh
+ transport preferred none
  transport input ssh
  transport output none
 line vty 5 15
@@ -26,6 +26,6 @@ line vty 5 15
  timeout login response 15
  password 7 {{ config_context["line"]["password_hash"] }}
  logging synchronous
- transport preferred ssh
+ transport preferred none
  transport input ssh
  transport output none
