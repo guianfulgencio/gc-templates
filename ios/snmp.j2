@@ -5,9 +5,9 @@ snmp-server source-interface {{ primary_ip4["interfaces"][0]["name"] }}
 !
 snmp-server group CVX-NMS v3 priv read V3Read write V3Write access cvx-snmpv3-acl
 !
-{% for server, attrib in config_context["snmp"]["servers"].items() %}
+{% for server, attrib in config_context["snmp"]["servers"].items() -%}
 snmp-server host {{ server }} version {{ attrib["version"] }} {{ attrib["securitylevel"] }} {{ attrib["user"] }}
-{% endfor %}
+{% endfor -%}
 !
 snmp-server view V3Read iso included
 snmp-server view V3Write iso included
