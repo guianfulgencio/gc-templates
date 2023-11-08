@@ -26,4 +26,5 @@ snmp ifmib ifindex persist
 ip access-list standard cvx-snmpv3-acl
  {% for cidr in config_context["snmp"]["acl"] %}
 {{ loop.index * 10 }} permit {{ cidr }}
+{% endfor %}
 !
