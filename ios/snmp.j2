@@ -24,14 +24,14 @@ snmp-server enable traps memory
 snmp ifmib ifindex persist
 !
 ip access-list standard cvx-snmpv3-acl
- {%- for cidr in config_context["snmp"]["acl"] -%}
+ {% for cidr in config_context["snmp"]["acl"] %}
 {% set ip = cidr | ipaddress_network("network_address") %}
 {% set prefix = cidr | ipaddress_network("prefixlen") %}
 {% if  prefix == 32 -%}
 {{ loop.index * 10 }} permit {{ ip }}
-{% else -%}
+{% else %}
 {{ loop.index * 10 }} permit {{ ip }} {{ cidr | ipaddress_network("hostmask") }}
-{% endif -%}
- {% endfor -%}
+{% endif %}
+ {% endfor %}
 {{ (config_context["snmp"]["acl"]|length + 1) * 10 }} deny   any log
 !
