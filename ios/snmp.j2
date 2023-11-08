@@ -1,5 +1,4 @@
 !
-snmp-server location {{ role["name"] | default ('Unknown') }} : {{ location["name"] | upper }} : {{ rack["name"] | default ('Unknown') | upper }}-U{{ position | default ('00') }} : {{ location["latitude"] | default ("0.0") }},{{ location["longitude"] | default ("0.0") }} 
 !
 snmp-server source-interface {{ primary_ip4["interfaces"]["name"] }}
 !
