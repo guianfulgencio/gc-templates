@@ -1,1 +1,5 @@
+{% for server in config_context["ntp"]["servers"] %}
+ntp server {{ server }}
+{% endfor %}
+!
 ntp source {{ primary_ip4["interfaces"][0]["name"] }}
