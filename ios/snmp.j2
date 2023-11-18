@@ -32,6 +32,6 @@ ip access-list standard cvx-snmpv3-acl
 {% else -%}
 {{ loop.index * 10 }} permit {{ ip }} {{ cidr | ipaddress_network("hostmask") }}
 {% endif %}
- {% endfor -%}
+ {%- endfor -%}
 {{ (config_context["snmp"]["acl"]|length + 1) * 10 }} deny   any log
 !
