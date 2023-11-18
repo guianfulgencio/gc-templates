@@ -1,7 +1,7 @@
 !
 snmp-server location {{ role["name"] | default ('Unknown') }} : {{ location["name"] | upper }} : {{ rack["name"] | default ('Unknown') | upper }}-U{{ position | default ('00') }} : {{ location["latitude"] | default ("0.0") }},{{ location["longitude"] | default ("0.0") }} 
 !
-snmp-server source-interface {{ mgmt_interface["name"] }}
+snmp-server source-interface {{ mgmt_interface[0]["name"] }}
 !
 snmp-server group CVX-NMS v3 priv read V3Read write V3Write access cvx-snmpv3-acl
 !
@@ -13,7 +13,7 @@ snmp-server view V3Read iso included
 snmp-server view V3Write iso included
 snmp-server view V3Notify iso included
 snmp-server trap link ietf
-snmp-server trap-source {{ mgmt_interface["name"] }}
+snmp-server trap-source {{ mgmt_interface[0]["name"] }}
 snmp-server enable traps snmp linkdown linkup coldstart warmstart
 snmp-server enable traps license
 snmp-server enable traps entity
