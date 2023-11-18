@@ -28,8 +28,8 @@ ip access-list standard cvx-snmpv3-acl
 {% set ip = cidr | ipaddress_network("network_address") -%}
 {% set prefix = cidr | ipaddress_network("prefixlen") -%}
 {% if  prefix == 32 -%}
-{{ loop.index * 10 }} permit {{ ip }} 
-{% else -%}
+{{ loop.index * 10 }} permit {{ ip }}
+{% else %}
 {{ loop.index * 10 }} permit {{ ip }} {{ cidr | ipaddress_network("hostmask") }}
 {% endif -%}
  {% endfor -%}
