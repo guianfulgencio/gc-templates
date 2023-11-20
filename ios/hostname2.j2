@@ -1,1 +1,1 @@
-hostname  {{ (config_context["hostname"] }}
+hostname  {{ (config_context["hostname"].split('.')[0] }}
