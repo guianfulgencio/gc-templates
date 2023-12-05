@@ -1,4 +1,3 @@
 ip domain name network.chevron.net
-ip domain-lookup
 ip name-server {{ config_context["dns"]["servers"] | join(" ") }}
 !
