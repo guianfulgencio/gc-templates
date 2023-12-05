@@ -1,6 +1,8 @@
 !
 snmp-server location {{ role["name"] | default ('Unknown') }} : {{ location["name"] | upper }} : {{ rack["name"] | default ('Unknown') | upper }}-U{{ position | default ('00') }} : {{ location["latitude"] | default ("0.0") }},{{ location["longitude"] | default ("0.0") }} 
 !
+snmp-server contact {{ cf_support_group }}
+!
 snmp-server source-interface {{ mgmt_interface[0]["name"] }}
 !
 snmp-server group CVX-NMS v3 priv read V3Read write V3Write access cvx-snmpv3-acl
